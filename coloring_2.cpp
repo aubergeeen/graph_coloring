@@ -28,7 +28,7 @@ int greedyColoring(int n, bool** graph, int* colors, int* order = nullptr) {
     for (int i = 0; i < n; i++) {  // n операций
         colors[i] = -1;
     }
-    
+
     int max_color = 0;
 
     for (int idx = 0; idx < n; idx++) {
@@ -155,10 +155,10 @@ void testBruteForcePerformance(int max_vertices, int step) {
 }
 
 int main() {
+    
     srand(time(NULL));
     
-    testGreedyPerformance(15000, 50);         
-      
-    
+    testBruteForcePerformance(16, 1);
+
     return 0;
 }
