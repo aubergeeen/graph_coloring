@@ -19,13 +19,16 @@ void generateRandomGraph(int n, double p, bool** graph) {
 
 // жадный алг (+ принимает порядок вершин)
 int greedyColoring(int n, bool** graph, int* colors, int* order = nullptr) {
-    int temp_order[n];
+    int temp_order[n];  // ругается но работает??? (на g++)
     if (!order) {
         for (int i = 0; i < n; i++) temp_order[i] = i;
         order = temp_order;
     }
 
-    fill_n(colors, n, -1);
+    for (int i = 0; i < n; i++) {  // n операций
+        colors[i] = -1;
+    }
+    
     int max_color = 0;
 
     for (int idx = 0; idx < n; idx++) {
@@ -72,6 +75,7 @@ void bruteForceColoring(int n, bool** graph, int* min_colors, int* best_colors) 
     } while (next_permutation(order, order + n));
 }
 
+// тест  жадного алгоритма
 void testGreedyPerformance(int max_vertices, int step) {
     cout << "\n=== Greedy Algorithm Performance ===\n";
     cout << "Vertices | Time (ms)\n";
@@ -98,7 +102,7 @@ void testGreedyPerformance(int max_vertices, int step) {
     }
 }
 
-// Тест производительности для оптимизированного жадного алгоритма
+// тест оптимизированного жадного алгоритма
 void testOptimizedGreedyPerformance(int max_vertices, int step) {
     cout << "\n=== Optimized Greedy Algorithm Performance ===\n";
     cout << "Vertices | Time (ms)\n";
@@ -153,9 +157,8 @@ void testBruteForcePerformance(int max_vertices, int step) {
 int main() {
     srand(time(NULL));
     
-    testGreedyPerformance(20, 2);         
-    testOptimizedGreedyPerformance(20, 2); 
-    testBruteForcePerformance(10, 1);      
+    testGreedyPerformance(15000, 50);         
+      
     
     return 0;
 }
